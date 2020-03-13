@@ -6,6 +6,12 @@
 
 static const size_t ARRAY_LENGTH = 10000;
 
+static int is_sorted(int* array) {
+    for(int i = 0; i < ARRAY_LENGTH - 1; i++)
+        if(array[i] > array[i + 1]) return 0;
+    return 1;
+}
+
 /* Prototypes */
 
 /* ------------------------------------------------------------------------- *
@@ -20,9 +26,9 @@ static const size_t ARRAY_LENGTH = 10000;
  * ------------------------------------------------------------------------- */
 static double cpuTimeUsedToSort(int* array, size_t length)
 {
-    clock_t start = clock();
-    sort(array, length);
-    return ((double) (clock() - start)) / CLOCKS_PER_SEC;
+   clock_t start = clock();
+   sort(array, length);
+   return ((double) (clock() - start)) / CLOCKS_PER_SEC;
 }
 
 static void print_array(int* array, int length) {
@@ -41,6 +47,7 @@ int main2() {
         fprintf(stderr, "Could not created random array. Aborting...\n");
         return EXIT_FAILURE;
     }
+    //random = {16, 4, 10, 14, 7, 9, 3, 2, 8, 1}
     print_array(random, ARRAY_LENGTH);
     sort(random, ARRAY_LENGTH);
     print_array(random, ARRAY_LENGTH);
@@ -69,7 +76,7 @@ int main(void)
     }
 
     double sec = cpuTimeUsedToSort(sorted, ARRAY_LENGTH);
-    printf("Sorted     | %f\n", sec);
+    printf("Sorted     | %f  (sorted: %d)\n", sec, is_sorted(sorted));
     free(sorted);
 
     // -------------------------- Decreasing array -------------------------- //
@@ -81,7 +88,7 @@ int main(void)
     }
 
     sec = cpuTimeUsedToSort(decreasing, ARRAY_LENGTH);
-    printf("Decreasing | %f\n", sec);
+    printf("Decreasing | %f  (sorted: %d)\n", sec, is_sorted(decreasing));
     free(decreasing);
 
     // ---------------------------- Random array ---------------------------- //
@@ -93,7 +100,7 @@ int main(void)
     }
 
     sec = cpuTimeUsedToSort(random, ARRAY_LENGTH);
-    printf("Random     | %f\n", sec);
+    printf("Random     | %f  (sorted: %d)\n", sec, is_sorted(random));
     free(random);
 
     printf("-----------------------------\n");
