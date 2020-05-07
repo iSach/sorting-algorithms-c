@@ -28,4 +28,4 @@ The release folder contains a pdf report, answering some theoretical questions
 about the project. (In French)
 
 ### Assignment
-[Click here to see the assignment PDF](http://www.montefiore.ulg.ac.be/~jmbegon/2019_2020/sda/p2.pdf)
+[Click here to see the assignment PDF](http://www.montefiore.ulg.ac.be/~jmbegon/2019_2020/sda/p1.pdf)
